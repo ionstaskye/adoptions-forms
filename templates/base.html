@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Pets</h1>
+    {% for pet in pets %}
+    <div>
+        {% if image != null %}
+        <img src = {{pet.photo_url}}>
+        {% endif %}
+        <span><a action = /{{pet.id}}>{{pet.name}}</a> is {% if pet.available == True %} not {% endif %}available</span>
+        <form action = "/edit/{{pet.id}}" method = "GET">
+            <button>edit</button>
+        </form>
+    </div>
+    {% endfor %}
+    <form action = "/add" method = "GET">
+        <button>Add Pet</button>
+    </form>
+</body>
+</html>

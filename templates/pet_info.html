@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Pet Form</title>
+</head>
+<body>
+   <h1>{{pet.name}}</h1>
+   <div>
+    <span>{{pet.species}}</span>
+    <img src = {{pet.photo_url}}>
+    <span>Age: {{pet.age}} Years old</span>
+    <p>{{pet.notes}}</p>
+   </div>
+    <form method="POST" action = "/{{pet.id}}">
+        {{ form.hidden_tag()}}
+
+        {% for field in form if field.widgit.input_type != 'hidden' %}
+        <p>{{field.label}}
+            {{field}}
+
+            {% for error in field.errors %}
+            {{error}}
+        {% endfor %}
+        </p>
+
+        {% endfor %}
+        <button type = 'submit'>Add</button>
+    </form>
+</body>
+</html>
